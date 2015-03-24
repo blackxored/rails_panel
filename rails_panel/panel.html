@@ -166,6 +166,26 @@
                 <div class="cached-queries-control" ng-show="activeCachedSqlsCount() > 0"><input id="show_cached_queries" type="checkbox" ng-model="showCachedSqls"/><label for="show_cached_queries">Show cached queries ({{activeCachedSqlsCount()}})</label></div>
                 Number of executed queries: {{activeExecutedSqlsCount()}}
               </div>
+              <div class="eager-load-queries" style="margin-top: 5px;">
+                <table class="stupidtable" id="bullet">
+                  <thead>
+                    <tr>
+                      <th data-sort="string">Location</th>
+                      <th data-sort="string">Type</th>
+                      <th data-sort="string">Class</th>
+                      <th class="fluid">Associations</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="bullet in bulletQueries">
+                      <td><a href="{{bullet.location}}">{{bullet.location}}</a></td>
+                      <td>{{bullet.type}}</td>
+                      <td>{{bullet.base_class}}</td>
+                      <td>{{bullet.associations.join(',')}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div id="tab-views">
               <table class="stupidtable" id="views" ng-show="notEmpty(activeViews())">

@@ -9,6 +9,7 @@ function TransactionsCtrl($scope) {
   $scope.sqlsMap             = {}; // {transactionKey: [{...}, {...}], ... }
   $scope.sqlsCachedCountMap  = {}; // {transactionKey: count, ...}
   $scope.showCachedSqls      = true;
+  $scope.bulletQueries       = [];
 
   $scope.expectedMetaRequestVersion = '0.3.4'
   $scope.metaRequestVersion  = $scope.expectedMetaRequestVersion;
@@ -36,6 +37,7 @@ function TransactionsCtrl($scope) {
     $scope.paramsMap = {};
     $scope.sqlsMap = {};
     $scope.activeKey = null;
+    $scope.bulletQueries = [];
   }
   
   $scope.activeRequest = function() {
@@ -151,6 +153,9 @@ function TransactionsCtrl($scope) {
         }
         $scope.sqlsCachedCountMap[key] = val;
       }
+      break;
+    case "bullet":
+      $scope.bulletQueries.push(data.payload);
       break;
     default:
       console.log('Notification not supported:' + data.name);
